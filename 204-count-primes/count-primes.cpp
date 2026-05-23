@@ -1,8 +1,9 @@
 class Solution {
 public:
     int countPrimes(int n) {
-       
+        
 
+        
         if (n <= 2) return 0;
 
         // Step 1: assume all numbers are prime
@@ -30,4 +31,3 @@ public:
         return count;
     }
 };
-        
