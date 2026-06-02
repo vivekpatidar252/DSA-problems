@@ -1,40 +1,20 @@
-#include<vector>
 class Solution {
 public:
-    int maxProfit(vector<int>& prices) {
-            int max = 0;
-            int n = prices.size();
-            int temp = 0;
-            int arr = 0;
-            
-        for( int i = 0 ; i < n ; i++)
+    int maxProfit(vector<int>& prices) 
+    {
+
+        int minimum = prices[0];
+        int MaxP = 0;
+        int cost = 0; 
+
+        for(int i = 0 ; i<prices.size() ; i++)
         {
-             if(i==0)
-             {
-                arr = prices[i]+1 ;
-             }
-             temp = prices[i];
-             if(prices[i]<arr)
-             {
-                for(int j = i+1 ; j < n ; j++)
-                {
-                    if(prices[j]>temp)
-                    {
-                        temp = prices[j];
-                    }
-                }
-                if(prices[i]< temp)
-                {
-                if(max<(temp - prices[i]))
-                {
-                    max = temp - prices[i];
-                }
-                }
-             arr = prices[i];
-             }
-             
+            cost = prices[i] - minimum;
+            MaxP = max(MaxP , cost);
+            minimum = min(minimum , prices[i]);
         }
-        return max;
+
+        return MaxP;
         
     }
 };
