@@ -1,22 +1,62 @@
 class Solution {
 public:
-    vector<int> sortedSquares(vector<int>& A)
+    vector<int> sortedSquares(vector<int>& A) 
     {
-        int n = A.size();
-         for(int i = 0 ; i<n ; i++)
-         {
-            if(A[i]<0)
-            {
-             A[i] = -A[i];   
-            }
-         }
-         sort(A.begin() , A.end());
+     //First we find ki kaha tk negative elemnt h array me and usko postivr kregne and
+     //then reverse
+    long long int n = A.size();
+    long long int i = 0;
+    long long int j = 0;
+     long long int idx = 0;
+     while(i<n && A[i]<0)
+     {
+        A[i] = -A[i];
+        A[i] = A[i]*A[i];
+        i++;
+     } 
+     j=i;
+    int  m = i; 
+     reverse(A.begin() ,A.begin()+i);
 
-         for(int i = 0 ; i < n ; i++)
-         {
-            A[i] = A[i] * A[i];
-         }
+    while(j<n){
+        A[j] = A[j]*A[j];
+        j++;
+    } 
 
-         return A;
+    i=0;
+    j = m;
+    vector<int>ans(n);
+
+    while(i<m && j<A.size())
+    {
+      if(A[i]<A[j])
+      {
+      ans[idx] = A[i];
+      i++;
+      idx++;
+      }
+      else
+      {
+      ans[idx] = A[j];
+      idx++;
+      j++;  
+      }
+    }
+    while(j<n)
+    {
+     ans[idx] = A[j];
+     idx++;
+     j++;
+    }
+
+    while(i<m)
+    {
+     ans[idx] = A[i];
+     idx++;
+     i++;
+    }
+
+    return ans;
+
     }
 };
